@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 module.exports = loginHandler = {
-    getUser: (req, res) => {
+    getUser: (req, res, next) => {
         res.send(req.user)
     }
 }

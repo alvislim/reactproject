@@ -24,7 +24,7 @@ class RegisterContainer extends Component {
         try {
             e.preventDefault()
             let data = { ...this.state }
-            const response = await axios.post('http://localhost:5000/register', data)
+            const response = await axios.post('http://localhost:5000/register', data, { withCredentials: true })
             if (response.data.success) {
                 this.setState({ 
                     registerStatus:  true,

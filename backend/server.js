@@ -3,36 +3,32 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const cors = require('cors')
+const passport = require('passport');
+const connectDB = require('./config/db')
 const cookieParser = require('cookie-parser')
 
-app.use(cors())
-
-app.use(cookieParser('secret'))
+// Env
+require('dotenv').config({ path: './config/config.env' })
+connectDB()
 
 //Body Parser
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const passport = require('passport');
-require('./config/passport')(passport);
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 app.use(
     session({
         secret: 'secret',
         resave: true,
         saveUninitialized: true
-    })
+      })
 );
 
+app.use(cookieParser('secret'))
 app.use(passport.initialize());
-
 app.use(passport.session());
-
-const connectDB = require('./config/db')
-
-// Env
-require('dotenv').config({ path: './config/config.env' })
-connectDB()
+require('./config/passport')(passport);
 
 require('./routes/user')(app);
 

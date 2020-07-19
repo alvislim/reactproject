@@ -4,9 +4,9 @@ const getUser = require('../controller/getUser')
 const { autheticationPassed } = require('../config/auth')
 
 module.exports = app => {
-    app.route('/register').post(register.addUser)
+    app.post('/login', login.login)
 
-    app.route('/login').post(login.login)
+    app.post('/register', register.addUser)
 
-    app.route('/user').get(autheticationPassed, getUser.getUser)
+    app.get('/user', getUser.getUser)
 }

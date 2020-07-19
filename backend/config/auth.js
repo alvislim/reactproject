@@ -1,8 +1,8 @@
 module.exports = {
   autheticationPassed: function (req, res, next) {
     if (req.isAuthenticated()) 
-      return next();
-      res.status(200).json({
+    return next();
+        res.status(200).json({
         success: true,
         msg: 'User is Authenticated',
         user: req.user
@@ -10,7 +10,7 @@ module.exports = {
   },
     autheticationFailed: function (req, res, next) {
     if (!req.isAuthenticated()) 
-      return next();
+    return next();
         res.status(404).json({
         success: false,
         msg: 'Not Authenticated'

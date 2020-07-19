@@ -18,8 +18,8 @@ class LoginContainer extends Component {
     try {
         e.preventDefault()
         let data = { ...this.state }
-        const response = await axios.post('http://localhost:5000/login', data)
-        console.log(response.data.user)
+        const response = await axios.post("http://localhost:5000/login", data, { withCredentials: true })
+        // console.log(response.data.user)
         if(response.data.success) {
             this.props.history.push('/dashboard') 
         }
