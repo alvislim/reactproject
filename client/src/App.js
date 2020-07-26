@@ -12,11 +12,7 @@ class App extends Component {
       registerStatus: 'NOT_REGISTERED'
     }
   }
-
-  handleLogout = (e) => {
-    
-  }
-
+  
   render() {
     return (
       <Router>
@@ -24,7 +20,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/login' component={LoginContainer} />
             <Route exact path='/register' component={RegisterCompo} />
-            <Route exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/dashboard' component={Dashboard}/>
           </Switch>
         </div>
       </Router>

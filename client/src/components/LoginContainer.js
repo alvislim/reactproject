@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import LoginLabel from './LoginLabel'
 import Message from './ErrorMessage'
+import GoogleLogin from 'react-google-login'
 import axios from 'axios'
+
 
 class LoginContainer extends Component {
     constructor() {
@@ -37,6 +39,11 @@ class LoginContainer extends Component {
         this.setState({ [id]: value })
     }
 
+    responseGoogle = (response) => {
+        console.log(response)
+        console.log(response.profileObj)
+      }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
@@ -46,6 +53,13 @@ class LoginContainer extends Component {
                     )
                 })}
                 <LoginLabel {...this.state} handleChange = {this.handleChange}/>
+                <GoogleLogin 
+                    clientId='825484293224-ridcbmjkgra0tiubl10q2fcpaqre5bj5.apps.googleusercontent.com'
+                    buttonText='Login'
+                    onSuccess={this.responseGoogle}
+                    onFailure={this.responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
             </form>
         )
     }
