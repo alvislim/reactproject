@@ -20,12 +20,22 @@ class Dashboard extends Component {
             this.props.history.push('/login')
         }
     }
+
+    handleLogout = async (e) => {
+        try {
+            const response = await axios.get('http://localhost:5000/logout', { withCredentials: true})
+            console.log(response)
+            this.props.history.push('/login')
+        } catch (err) {
+            console.log(err.response)
+        }
+    }
     
     render() {
         return (
             <div>
                 <h1>Welcome {this.state.name}</h1>
-            <button onClick={this.props.handleLogout}>LogOut</button>
+            <button onClick={this.handleLogout}>LogOut</button>
             </div>
         )
     }
